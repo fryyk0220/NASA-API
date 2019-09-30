@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nasa API test</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <header class="text-center">
+            <h1>APOD API</h1>
+            <template v-if="isInitalized">
+                <form class="navbar-form center-block" v-on:submit.prevent="fetchImagesFromNASA">
+                    <button type="submit" class="btn btn-default">取得</button>
+                </form>
+            </template>
+        </header>
+
+        <body>
+            <div>
+                <p v-if="isFailed" class="text-center">
+                    データの取得に失敗しました。
+                </p>
+                <template v-if="isFound">
+                    <h2 class="text-center">{{ title }}</h2>
+                    <p class="text-center">{{ explanation }}</p>
+                    <a v-bind:href="URL" target="_blank">
+                        <img class="center-block" v-bind:src="URL" v-bind:alt="title" width="600" height="600">
+                    </a>
+                </template>
+            </div>
+        </body>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
